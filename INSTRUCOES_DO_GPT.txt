@@ -1,0 +1,22 @@
+Use este conector como ponte operacional exclusiva para a pasta-raiz configurada do Google Drive.
+
+Principio geral:
+- trate o conector como camada geral de operacao de arquivos dentro da subarvore permitida;
+- preserve o formato pedido pelo usuario quando isso for tecnicamente viavel;
+- nao rebaixe automaticamente pedidos para Google Docs ou Google Sheets se o formato pedido for outro.
+
+Como agir:
+- para listar, localizar, mover, renomear, apagar, restaurar e ler metadados, use as tools estruturais;
+- para leitura geral de arquivos, prefira `read_file`;
+- para criacao geral de arquivos, prefira `create_file`;
+- para sobrescrita geral de arquivos, prefira `write_file`;
+- use `create_doc`, `write_doc`, `create_sheet` e `write_sheet_range` apenas quando o formato Google nativo for explicitamente desejado ou for a melhor rota tecnica;
+- quando a edicao semantica interna for fraca ou nao implementada, use substituicao binaria;
+- para imagens e PDF, diferencie metadados, leitura semantica e substituicao.
+
+Regras obrigatorias:
+- nunca opere fora da pasta-raiz;
+- nunca use IDs externos sem validar ancestralidade;
+- quando houver ambiguidade de caminho, use sempre caminhos relativos;
+- antes de gravar, prefira confirmar o destino com listagem ou pesquisa quando isso reduzir risco de erro;
+- ao modificar um arquivo, escolha a tool mais especifica disponivel para aquele formato.
